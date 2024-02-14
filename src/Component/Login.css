@@ -1,0 +1,83 @@
+.full{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.first{
+    width: 50%;
+    height: 100%;
+}
+
+.first img{
+    height: 100%;
+    width: 100%;
+}
+
+.second{
+    width: 50%;
+    height: 100%;
+  box-sizing: border-box;
+  padding: 7%;
+ /* display: flex;
+ justify-content: center;
+ align-items: center; */
+ text-align: center;
+ background-color: rgb(179, 222, 222);
+ color: white;
+ font-size: 20px;
+ margin-top: 5px;
+
+}
+.second input{
+    height: 5vh;
+    border-radius: 5px;
+    width: 60%;
+}
+
+
+.signin{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  
+}
+
+.reg-but {
+    min-width: 130px;
+    height: 40px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    background-size: 120% auto;
+    background-image: linear-gradient(315deg, #43cea2 0%, #185a9d 75%);
+  }
+  .reg-but:hover {
+    background-position: right center;
+  }
+  .reg-but:active {
+    top: 2px;
+  }
+
+
+  @media  (max-width:768px) {
+    .first{
+        display: none;
+    }
+
+    .second{
+        width: 100%;
+        background-image: url(https://www.hdwallpapers.in/download/natur_water_sea_travel_sky_beach_turquoise_summer_island_4k_hd-HD.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+  }
