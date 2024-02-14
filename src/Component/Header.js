@@ -7,7 +7,7 @@ import { IoPersonCircleSharp, IoLogOutSharp } from 'react-icons/io5';
 import { FaPhoneVolume } from "react-icons/fa6";
 
 const Header = () => {
-    const token = localStorage.getItem('token');
+   // const token = localStorage.getItem('token');
     const logout = useCallback(() => {
         localStorage.removeItem('token');
       }, []);
