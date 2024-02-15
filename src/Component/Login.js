@@ -1,115 +1,114 @@
-import React, { useState } from 'react'
-import axios from 'axios'
-import { useNavigate,NavLink } from 'react-router-dom'
-import "./Login.css"
+import React, { useState } from 'react';
+import "./Compo.css";
+//import { useEffect,useCallback} from 'react';
+
+import { NavLink, useNavigate } from 'react-router-dom';
+import { IoPersonCircleSharp} from 'react-icons/io5'; 
+import { FaPhoneVolume } from "react-icons/fa6";
+
+const Header = () => {
+ // const [logout ,setLogout] =useState(false);
+ const navigate = useNavigate()
+
+ const [userIcon,setuserIcon]=useState(false);
+
+const handleusericon=()=>{
+    setuserIcon(!userIcon)
+  }
 
 
 
-
-
-const Login = () => {
-
-
-  const nav=useNavigate()
-  const [ldata,ldataset]=useState({
-    email:"",
-    password:""
-  })
-  const appdata1=(e)=>{
-    
-    ldataset({ ...ldata, [e.target.name]: e.target.value });
-    console.log(ldata)
-  };
-  const datasubmit=(e)=>{
-    e.preventDefault()
-    axios
-
-    // .post('http://localhost:2828/api/login',ldata)
-    .post('https://majarproject.onrender.com/api/login',ldata)
-
-
-      .then((res) => {
-        
-        
-        
-        if (res.data.msg === "your login successfully") {
-          localStorage.setItem("token", res.data.token);
-          console.log(res.data.jwttoken)
-          
-          alert(res.data.msg)
-          nav("/")
-      }
-      else{
-        alert(res.data.msg);
-      }
-      })
-      .catch((error) => {
-        console.log(error);
-       
-      });
-
-      ldataset({        
-        email: "",
-        password: "",
-      });
-
-  };
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  return (
-    <div className='full'>
-      <div className='first'>
-        <img src='https://www.hdwallpapers.in/download/natur_water_sea_travel_sky_beach_turquoise_summer_island_4k_hd-HD.jpg'  alt="missing"/>
-
-      </div>
-
-
-
-      <div className='second'>
-
+const logoutbtn=()=>{
+  localStorage.clear('token')
+  // setloginout(false)
+  navigate('/login')
   
-      <label htmlFor='email'>Email: </label><br />
-      <input type='email' name='email' value={ldata.email} onChange={appdata1} className='in1' required /><br/>
+  
+}
+  
 
-      <label htmlFor='password'>Password: </label><br />
-      <input type='password' name='password' value={ldata.password} onChange={appdata1} className='in1' required/><br/>
-      <br />
-      <br />
-      <button onClick={datasubmit} className='reg-but'>LogIn</button>
+
+
+
+   const token = localStorage.getItem('token');
+
+   const username = localStorage.getItem('selfname')
+
+
+    //const logout = useCallback(() => {
+    //     localStorage.removeItem('token');
+    //   }, []);
+    
+    //   useEffect(() => {
+    //     // Check if token exists in localStorage
+    //     const token = localStorage.getItem('token');
+    //     if (token) {
+    //       // If token exists, set the logout functionality
+    //       const loginLink = document.getElementById('login-link');
+    //       if (loginLink) {
+    //         loginLink.addEventListener('click', logout);
+    //       }
+    //     }
+        
+    //     // Cleanup function to remove event listener
+    //     return () => {
+    //       const loginLink = document.getElementById('login-link');
+    //       if (loginLink) {
+    //         loginLink.removeEventListener('click', logout);
+    //       }
+    //     };
+    //   }, [logout]);
+
+    return(
+        <>
+        <div className='header'>
+
+            <div className='logo'>
+                <img src='https://www.theindiatourism.com/images/logo.webp' alt='hd'/>
+
+            </div>
+            <div className='middle'>
+                <img src='https://www.theindiatourism.com/images/atithi-devo-bhava.webp' alt='hd'/>
+
+            </div>
+            <div className='mail'>
+                <p>Email : info@theindiatourism.com</p>
+                <FaPhoneVolume/>: 1234567890
+            </div>
+            {/* <div className='login'>
       
-      <div>
+        <NavLink to='/login'>
+          <IoPersonCircleSharp className='icon'/>
+        </NavLink>
+
+    </div> */}
+          <div className='login'>
+
+      <NavLink to='/login' id='login-link'>
+      {token?  <p className='usernamewithicon' onClick={handleusericon}><span>{username[0]?.toUpperCase()}</span> 
+</p> : <IoPersonCircleSharp className='icon'/> }
+
+{userIcon && (<div className='usericonclick'>
+            {/* <span className='usericondashborad'> */}
+       
+          <span className='usericonlogout' onClick={logoutbtn}>Logout</span></div>)}
 
 
-      
+       
 
-      <NavLink to="/register" className="nextpage">
-         Haven't account please Register first
+
+          
       </NavLink>
-      </div>
-      </div>
-
-
     </div>
-  )
+
+
+        </div>
+     
+        
+        </>
+    )
 }
 
-export default Login
 
 
-
-
+export default Header;
